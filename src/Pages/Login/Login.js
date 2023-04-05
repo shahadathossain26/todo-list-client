@@ -1,20 +1,40 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { logIn, } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogin = data => {
+        setLoginError('');
+        logIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setLoginUserEmail(data.email);
+                navigate('/home')
+
+            })
+            .catch(err => {
+                console.log(err.message);
+                setLoginError(err.message);
+            })
+    }
+
+
+
     return (
         <section className='my-28 block lg:flex justify-around'>
 
             <div className='w-full  md:w-[385px]  shadow-xl  border px-[29px] py-[25px] mx-auto'>
                 <h2 className='text-xl text-center text-black'>Login</h2>
 
-                <form onSubmit={handleSubmit()}>
+                <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"><span className="label-text text-black">Email</span>
                         </label>
