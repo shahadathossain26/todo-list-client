@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { RiFileEditFill, RiDeleteBin2Fill } from "react-icons/ri";
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
-const TodoCard = ({ todo, handleDelete }) => {
+const TodoCard = ({ todo, handleDelete, setCurrentTodo }) => {
     const { user } = useContext(AuthContext);
     const { _id, title, date, description } = todo;
 
@@ -16,7 +16,8 @@ const TodoCard = ({ todo, handleDelete }) => {
                         <span className=' opacity-70 text-[14px]'>{date}</span>
                     </div>
                     <div className='flex items-center'>
-                        <button><RiFileEditFill className='text-2xl cursor-pointer'></RiFileEditFill></button>
+                        <button></button>
+                        <label onClick={setCurrentTodo(todo)} htmlFor="update-modal" className=' cursor-pointer'><RiFileEditFill className='text-2xl cursor-pointer'></RiFileEditFill></label>
                         <button onClick={() => handleDelete(_id)}><RiDeleteBin2Fill className='text-2xl ml-3 cursor-pointer'></RiDeleteBin2Fill></button>
                     </div>
                 </div>

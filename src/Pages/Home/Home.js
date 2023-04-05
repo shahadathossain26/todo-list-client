@@ -5,11 +5,14 @@ import AddModal from './AddModal/AddModal';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import TodoCard from './TodoCard/TodoCard';
 import { toast } from 'react-hot-toast';
+import UpdateModal from './UpdateModal/UpdateModal';
 
 const Home = () => {
     const { user } = useContext(AuthContext);
     let [todos, setTodos] = useState([]);
     const [todoLoading, setTodoLoading] = useState(false);
+    const [currentTodo, setCurrentTodo] = useState(null);
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/todos?email=${user?.email}`)
@@ -53,6 +56,7 @@ const Home = () => {
                     key={todo._id}
                     todo={todo}
                     handleDelete={handleDelete}
+                    setCurrentTodo={setCurrentTodo}
                 ></TodoCard>)
             }
 
@@ -62,6 +66,14 @@ const Home = () => {
                 todoLoading={todoLoading}
                 setTodoLoading={setTodoLoading}
             ></AddModal>
+
+            {
+                currentTodo &&
+                <UpdateModal
+                    currentTodo={currentTodo}
+                    setTodoLoading={setTodoLoading}
+                ></UpdateModal>
+            }
 
 
         </div>
