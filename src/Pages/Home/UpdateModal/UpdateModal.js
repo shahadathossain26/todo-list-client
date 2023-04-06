@@ -18,7 +18,7 @@ const UpdateModal = ({ setTodoLoading, currentTodo }) => {
         }
         console.log(todo);
 
-        fetch(`http://localhost:5000/todo/update/${_id}`, {
+        fetch(`https://todo-list-server-shahadathossain26.vercel.app/todo/update/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

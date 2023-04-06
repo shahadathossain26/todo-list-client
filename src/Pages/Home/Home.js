@@ -17,7 +17,7 @@ const Home = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/todos?email=${user?.email}`)
+        fetch(`https://todo-list-server-shahadathossain26.vercel.app/todos?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setTodos(data));
 
@@ -25,7 +25,7 @@ const Home = () => {
 
     const handleDelete = (id) => {
         setTodoLoading(false);
-        fetch(`http://localhost:5000/todo/${id}`, {
+        fetch(`https://todo-list-server-shahadathossain26.vercel.app/todo/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

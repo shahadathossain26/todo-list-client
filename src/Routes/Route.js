@@ -21,6 +21,6 @@ export const router = createBrowserRouter([
     {
         path: '/todo/:id',
         element: <TodoDetails></TodoDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/todo/${params.id}`)
+        loader: ({ params }) => fetch(`https://todo-list-server-shahadathossain26.vercel.app/todo/${params.id}`)
     },
 ])

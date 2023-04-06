@@ -21,7 +21,7 @@ const AddModal = ({ setTodoLoading }) => {
         }
         console.log(todo);
 
-        fetch('http://localhost:5000/todo', {
+        fetch('https://todo-list-server-shahadathossain26.vercel.app/todo', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

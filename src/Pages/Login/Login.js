@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -21,6 +22,7 @@ const Login = () => {
                 console.log(user);
                 setLoginUserEmail(data.email);
                 navigate(from, { replace: true })
+                toast.success("Login Successfully")
 
             })
             .catch(err => {
