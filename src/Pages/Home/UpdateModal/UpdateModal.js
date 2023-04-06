@@ -31,6 +31,7 @@ const UpdateModal = ({ setTodoLoading, currentTodo }) => {
                 if (data.modifiedCount > 0) {
                     setTodoLoading(true);
                     toast.success("Updated Successfully");
+                    form.reset();
                 }
             })
     }
@@ -42,7 +43,7 @@ const UpdateModal = ({ setTodoLoading, currentTodo }) => {
                 <div className="modal-box relative text-black">
                     <label htmlFor="update-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 
-                    <form onSubmit={handleUpdate}>
+                    <form onSubmit={handleUpdate} htmlFor="update-modal">
 
                         <div>
                             <label className="label">

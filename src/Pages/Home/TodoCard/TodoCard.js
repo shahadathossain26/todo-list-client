@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { RiFileEditFill, RiDeleteBin2Fill } from "react-icons/ri";
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const TodoCard = ({ todo, handleDelete, setCurrentTodo }) => {
     const { user } = useContext(AuthContext);
@@ -8,7 +9,7 @@ const TodoCard = ({ todo, handleDelete, setCurrentTodo }) => {
 
 
     return (
-        <div className="card w-full lg:w-3/5  shadow-xl mx-10 md:mx-20 lg:mx-auto mt-10 bg-primary text-white">
+        <div className="card w-full lg:w-3/5  shadow-xl md:mx- lg:mx-auto mt-10 bg-primary text-white">
             <div className="card-body">
                 <div className='flex justify-between items-center'>
                     <div>
@@ -21,8 +22,12 @@ const TodoCard = ({ todo, handleDelete, setCurrentTodo }) => {
                         <button onClick={() => handleDelete(_id)}><RiDeleteBin2Fill className='text-2xl ml-3 cursor-pointer'></RiDeleteBin2Fill></button>
                     </div>
                 </div>
-                <div className='w-full'>
-                    <p>{description}</p>
+                <div className='w-full flex justify-between'>
+                    {
+                        description.length > 70 ? <p>{description.slice(0, 70)}...</p>
+                            : <p>{description}</p>
+                    }
+                    <Link to={`/todo/${_id}`}><a href="/" className="btn btn-secondary text-black">See Details</a></Link>
                 </div>
 
             </div>

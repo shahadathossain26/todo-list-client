@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Home from "../Pages/Home/Home";
+import TodoDetails from "../Pages/TodoDetails/TodoDetails";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +16,11 @@ export const router = createBrowserRouter([
     },
     {
         path: '/home',
-        element: <Home></Home>
+        element: <PrivateRoute><Home></Home></PrivateRoute>
+    },
+    {
+        path: '/todo/:id',
+        element: <TodoDetails></TodoDetails>,
+        loader: ({ params }) => fetch(`http://localhost:5000/todo/${params.id}`)
     },
 ])

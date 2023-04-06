@@ -34,6 +34,7 @@ const AddModal = ({ setTodoLoading }) => {
                 if (data.acknowledged) {
                     setTodoLoading(true);
                     toast.success('Todo Created Successfully')
+                    form.reset();
                 }
                 if (data.message) {
                     toast.error(data.message)
